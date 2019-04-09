@@ -1,6 +1,6 @@
 ## Example G4 simulation code for Dr. Febbraro's setup
 
-Basic setup for currently non-existent geometry to record hits of optical photons.
+Basic setup for Geant4 simulation of optical photons in a currently non-existent geometry.
 
 ### Currently on the package:
 
