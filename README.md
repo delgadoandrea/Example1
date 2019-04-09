@@ -2,34 +2,25 @@
 
 Basic setup for currently non-existent geometry to record hits of optical photons.
 
-### Markdown
+### Currently on the package:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- PMT Hit class which can be expanded to include hit position, time, energy....
+- Optical photon particle gun with random polarization/momentum direction.
+- Very basic format to save ROOT histograms with number of photons hitting PMT or absorbed.
+- Tracking classes to manually record hits.
+- Messenger classes for particle gun/event settings/tracking actions.
+
 
 ```markdown
 Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+# To run the code (Assuming G4 already installed):
+1. Clone repository locally.
+2. Make "Build directory".
+3. cmake <path-to-cloned-repository>
+4. make -j<number of processors>
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
 
 **Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/delgadoandrea/Example1/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
