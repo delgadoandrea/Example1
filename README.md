@@ -10,14 +10,14 @@ Basic setup for currently non-existent geometry to record hits of optical photon
 - Tracking classes to manually record hits.
 - Messenger classes for particle gun/event settings/tracking actions.
 
-
-```markdown
-
 # To run the code (Assuming G4 already installed):
 1. Clone repository locally.
 2. Create "Build directory".
-3. cmake <path-to-cloned-repository>
-4. make -j<number of processors>
-
-
-```
+3. 
+  ```bash
+   cmake <path-to-cloned-repository>
+   ```
+4. 
+```bash
+make -j<number of processors>
+  ```
