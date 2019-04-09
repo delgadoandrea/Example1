@@ -12,7 +12,6 @@ Basic setup for currently non-existent geometry to record hits of optical photon
 
 
 ```markdown
-Syntax highlighted code block
 
 # To run the code (Assuming G4 already installed):
 1. Clone repository locally.
@@ -20,7 +19,5 @@ Syntax highlighted code block
 3. cmake <path-to-cloned-repository>
 4. make -j<number of processors>
 
-
-**Bold** and _Italic_ and `Code` text
 
 ```
