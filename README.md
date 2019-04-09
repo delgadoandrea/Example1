@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## Example G4 simulation code for Dr. Febbraro's setup
 
-You can use the [editor on GitHub](https://github.com/delgadoandrea/Example1/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Basic setup for currently non-existent geometry to record hits of optical photons.
 
 ### Markdown
 
