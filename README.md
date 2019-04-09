@@ -15,7 +15,7 @@ Basic setup for currently non-existent geometry to record hits of optical photon
 
 # To run the code (Assuming G4 already installed):
 1. Clone repository locally.
-2. Make "Build directory".
+2. Create "Build directory".
 3. cmake <path-to-cloned-repository>
 4. make -j<number of processors>
 
