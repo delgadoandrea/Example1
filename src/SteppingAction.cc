@@ -94,7 +94,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep){
       }
     }
 
-    if(fOneStepPrimaries&&thePrePV->GetName()=="World")
+    //if(fOneStepPrimaries&&thePrePV->GetName()=="World")
       theTrack->SetTrackStatus(fStopAndKill);
   }
 
@@ -106,14 +106,14 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep){
   G4ParticleDefinition* particleType = theTrack->GetDefinition();
   if(particleType==G4OpticalPhoton::OpticalPhotonDefinition()){
     //Optical photon only
-    if(thePostPV->GetName()=="World")theTrack->SetTrackStatus(fStopAndKill);
+    //if(thePostPV->GetName()=="World")theTrack->SetTrackStatus(fStopAndKill);
 
     //Was the photon absorbed by the absorption process
     if(thePostPoint->GetProcessDefinedStep()->GetProcessName()
        =="OpAbsorption"){
       fEventAction->IncAbsorption();
       trackInformation->AddTrackStatusFlag(absorbed);
-      if(thePostPV->GetName() == "photocathode_phys")
+      if(thePostPV->GetName() == "Det")
         {
         //Triger sensitive detector manually since photon is
         //absorbed but status was Detection
@@ -130,7 +130,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep){
     //   =="Transportation"){
       //fEventAction->IncAbsorption();
       //trackInformation->AddTrackStatusFlag(absorbed);
-      if(thePrePV->GetName() == "photocathode_phys" && thePostPV->GetName()!="photocathode_phys")
+      if(thePrePV->GetName() == "Det" && thePostPV->GetName()!="Det")
         {
         //Triger sensitive detector manually since photon is
         //absorbed but status was Detection
@@ -167,14 +167,14 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep){
         trackInformation->AddTrackStatusFlag(boundaryAbsorbed);
         fEventAction->IncBoundaryAbsorption();
 //        break;
-        if(thePostPV->GetName() == "photocathode_phys")
+        if(thePostPV->GetName() == "Det")
         {
         //Triger sensitive detector manually since photon is
         //absorbed but status was Detection
         G4SDManager* SDman = G4SDManager::GetSDMpointer();
         G4String sdName="/Det/pmtSD";
         G4cout << "sdname: " << G4endl;
-        G4cout << "Photon absorbed at the Photocathode " << sdName << G4endl;        
+        G4cout << "Photon absorbed at the SD " << sdName << G4endl;        
         PMTSD* pmtSD = (PMTSD*)SDman->FindSensitiveDetector(sdName);
         if(pmtSD)pmtSD->ProcessHits_constStep(theStep, nullptr);
         trackInformation->AddTrackStatusFlag(hitPMT);
@@ -184,7 +184,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep){
       case Detection: //Note, this assumes that the volume causing detection
                       //is the photocathode because it is the only one with
                       //non-zero efficiency
-        if(thePostPV->GetName() == "photocathode_phys")
+        if(thePostPV->GetName() == "Det")
         {
         //Triger sensitive detector manually since photon is
         //absorbed but status was Detection

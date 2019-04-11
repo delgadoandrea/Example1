@@ -5,8 +5,8 @@
 
 /gun/particle opticalphoton
 /gun/energy 3.2 eV
-/gun/position 0 0 20
+/gun/position 0 0 -1.5
 /Example/gun/optPhotonPolar
 
-#/tracking/verbose 1
-/run/beamOn 100000
+/tracking/verbose 1
+/run/beamOn 100
