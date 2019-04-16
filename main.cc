@@ -8,7 +8,8 @@
 #include "G4String.hh"
 
 #include "FTFP_BERT.hh"
-#include "G4OpticalPhysics.hh"
+#include "OpticalPhysics.hh"
+//#include "G4OpWLS.hh"
 #include "G4EmStandardPhysics_option4.hh"
 
 #include "DetectorConstruction.hh"
@@ -16,6 +17,8 @@
 
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
+
+#include "G4VPhysicsConstructor.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -32,21 +35,18 @@ int main(int argc, char** argv)
 
   G4VModularPhysicsList* physicsList = new FTFP_BERT; 
   physicsList->ReplacePhysics(new G4EmStandardPhysics_option4());
-  G4OpticalPhysics* opticalPhysics = new G4OpticalPhysics();
-  //AD --------------------- Have to check about this profile since you're using a wavelength shifter
-  opticalPhysics->SetWLSTimeProfile("delta");
-
-  //AD ---------------------Default if you don't care about counting scintillation/Cerenkov photons
-  opticalPhysics->SetScintillationYieldFactor(1.0);
-  opticalPhysics->SetScintillationExcitationRatio(0.0);
-
-  opticalPhysics->SetMaxNumPhotonsPerStep(100);
-  opticalPhysics->SetMaxBetaChangePerStep(10.0);
-
-  opticalPhysics->SetTrackSecondariesFirst(kCerenkov, true);
-  opticalPhysics->SetTrackSecondariesFirst(kScintillation, true);
-
+  OpticalPhysics* opticalPhysics = new OpticalPhysics(true);
+  //G4OpticalPhysics* opticalPhysics = new G4OpticalPhysics();  
+  //G4OpWLS* wlsPhys = new G4OpWLS();
+  //opticalPhysics->SetWLSTimeProfile("delta");
+  //opticalPhysics->SetScintillationYieldFactor(1.0);
+  //opticalPhysics->SetScintillationExcitationRatio(0.0);
+  //opticalPhysics->SetMaxNumPhotonsPerStep(100);
+  //opticalPhysics->SetMaxBetaChangePerStep(10.0);
+  //opticalPhysics->SetTrackSecondariesFirst(kCerenkov, true);
+  //opticalPhysics->SetTrackSecondariesFirst(kScintillation, true);
   physicsList->RegisterPhysics(opticalPhysics);
+
   runManager->SetUserInitialization(physicsList);
 
   runManager->SetUserInitialization(new ActionInitialization(det));
