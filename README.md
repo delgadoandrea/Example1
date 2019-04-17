@@ -1,10 +1,9 @@
 ## Example G4 simulation code for Dr. Febbraro's setup
 
-Basic setup for Geant4 simulation of optical photons in a currently non-existent geometry.
-
 ### Currently on the package:
 
-- PMT Hit class which can be expanded to include hit position, time, energy....
+- Optical Physics class including most optical photon processes + WLS.
+- PMT SD/Hit class which can be expanded to include hit position, time, energy....
 - Optical photon particle gun with random polarization/momentum direction.
 - Very basic format to save ROOT histograms with number of photons hitting PMT or absorbed.
 - Tracking classes to manually record hits.
