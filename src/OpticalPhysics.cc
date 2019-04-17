@@ -1,6 +1,7 @@
 #include "OpticalPhysics.hh"
 #include "G4OpticalPhoton.hh"
 #include "G4ProcessManager.hh"
+#include "G4OpAbsorption.hh"
 
 OpticalPhysics::OpticalPhysics(G4bool toggle)
     : G4VPhysicsConstructor("Optical")
@@ -38,6 +39,12 @@ void OpticalPhysics::ConstructProcess(){
   	fAbsorptionProcess      = new G4OpAbsorption();
   	fRayleighScattering     = new G4OpRayleigh();
 	fBoundaryProcess        = new G4OpBoundaryProcess();
+
+  //fAbsorptionProcess->DumpPhysicsTable();
+  fWLSProcess->SetVerboseLevel(1);
+
+
+
 
   	G4ProcessManager* pManager =
                 G4OpticalPhoton::OpticalPhoton()->GetProcessManager();

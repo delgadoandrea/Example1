@@ -90,6 +90,7 @@ void Trajectory::DrawTrajectory() const
   if (lineRequired) {
     G4Colour colour;
     colour = G4Colour(0.,0.,1.);
+
  
     G4VisAttributes trajectoryLineAttribs(colour);
     trajectoryLine.SetVisAttributes(&trajectoryLineAttribs);

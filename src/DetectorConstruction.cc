@@ -67,27 +67,26 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
   G4MaterialPropertiesTable* tpbMPT = new G4MaterialPropertiesTable();
   G4double tpb_energy[2] = {2.95*eV,9.68*eV};
   G4double tpb_rindex[2]={ 1.60, 1.60};
-//  G4double tpb_abslength[2]={1.00*m, 0.0002*mm};
-  G4double tpb_abslength[2]={1.00*m, 1.0*m};  
+  G4double tpb_abslength[2]={1.00*m, 0.0002*mm};
   G4double tpb_emission[2]={1.0, 0.0};
   tpbMPT->AddProperty("RINDEX", tpb_energy, tpb_rindex, 2);
   tpbMPT->AddProperty("WLSABSLENGTH", tpb_energy, tpb_abslength, 2);
-  //tpbMPT->AddProperty("WLSCOMPONENT", tpb_energy, tpb_emission, 2);
-  //tpbMPT->AddConstProperty("WLSTIMECONSTANT", 0.5*ns);
+  tpbMPT->AddProperty("WLSCOMPONENT", tpb_energy, tpb_emission, 2);
+  tpbMPT->AddConstProperty("WLSTIMECONSTANT", 0.5*ns);
 
   G4MaterialPropertiesTable* larMPT = new G4MaterialPropertiesTable();
-  //G4double lar_energy[2] = {2.95*eV,9.68*eV};
-  //G4double lar_rindex[2]={ 1.24, 1.46};
-  //G4double lar_abslength[2]={1.0*m, 1.0*m};
-  //larMPT->AddProperty("RINDEX", lar_energy, lar_rindex, 2);
-  //larMPT->AddProperty("ABSLENGTH", lar_energy, lar_abslength, 2);
+  G4double lar_energy[2] = {2.95*eV,9.68*eV};
+  G4double lar_rindex[2]={ 1.24, 1.46};
+  G4double lar_abslength[2]={1.0*m, 1.0*m};
+  larMPT->AddProperty("RINDEX", lar_energy, lar_rindex, 2);
+  larMPT->AddProperty("ABSLENGTH", lar_energy, lar_abslength, 2);
 
   G4MaterialPropertiesTable* pmmaMPT = new G4MaterialPropertiesTable();
-  //G4double pmma_energy[2] = {2.95*eV,9.68*eV};
-  //G4double pmma_rindex[2]={ 1.49, 1.60};
-  //G4double pmma_abslength[2]={1.00*m, 0.0*m};
-  //pmmaMPT->AddProperty("RINDEX", pmma_energy, pmma_rindex, 2);
-  //pmmaMPT->AddProperty("ABSLENGTH", pmma_energy, pmma_abslength, 2);
+  G4double pmma_energy[2] = {2.95*eV,9.68*eV};
+  G4double pmma_rindex[2]={ 1.49, 1.60};
+  G4double pmma_abslength[2]={1.00*m, 0.0*m};
+  pmmaMPT->AddProperty("RINDEX", pmma_energy, pmma_rindex, 2);
+  pmmaMPT->AddProperty("ABSLENGTH", pmma_energy, pmma_abslength, 2);
 
   G4MaterialPropertiesTable* bk7MPT = new G4MaterialPropertiesTable();
   G4double bk7_energy[2] = {2.95*eV,9.68*eV};
@@ -108,7 +107,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
                     18.,            // z
                     39.95*g/mole,   // a
                     1.4*g/cm3);     // density
-  //LiquidArgon->SetMaterialPropertiesTable(larMPT);
+  LiquidArgon->SetMaterialPropertiesTable(larMPT);
 
   G4Material *ArgonGas =
     new G4Material( "ArgonGas",     // name
@@ -122,7 +121,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
                     2);             // number of elements
   TPB->AddElement(elH, 22);
   TPB->AddElement(elC, 12);
-  //TPB->SetMaterialPropertiesTable(tpbMPT);
+  TPB->SetMaterialPropertiesTable(tpbMPT);
 
   G4Material *PMMA =
     new G4Material( "PMMA",      // Name
@@ -187,7 +186,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
   G4double  radius  = 2.5*cm;           // Radius of PMT and wls disks
   G4double  det_disk_dist = 1.0*cm;     // Distance between detector and wls disk
   G4double  disk_thickness = 5*mm;      // Disk thickness
-  G4double  tpb_thickness = 0.002*mm;   // TPB thickness
+  G4double  tpb_thickness = 0.002*mm;   // TPB thickness  
 
   G4double  cone_width = 0.2*mm;
   G4double  cone_height = 0.2*mm;
@@ -254,13 +253,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
                           TPB,    //its material
                           "disk");      //its name
 
-  G4double tpbZ =  tpb_thickness;
+  G4double tpbZ =  tpb_thickness/2.;
   tpbLV->SetVisAttributes(G4Colour(0.0,0.0,1.0));
 
 
 //  G4VPhysicalVolume* tpbPV =
       new G4PVPlacement(0,                     //no rotation
-        G4ThreeVector(0., 0., tpbZ),           //at (x,y,z)
+        G4ThreeVector(0., 0., 0.),           //at (x,y,z)
                         "tpb_coating",
                         tpbLV,                 //its logical volume
                         physWorld,

@@ -34,6 +34,12 @@ void TrackingAction::PostUserTrackingAction(const G4Track* aTrack){
   //Lets choose to draw only the photons that hit the pmt
   if(aTrack->GetDefinition()==G4OpticalPhoton::OpticalPhotonDefinition()){
     const G4VProcess* creator=aTrack->GetCreatorProcess();
+
+    if(creator && creator->GetProcessName()=="OpWLS"){
+      //trajectory->WLS();
+      trajectory->SetDrawTrajectory(true);
+    }
+
       if(trackInformation->GetTrackStatus()&hitPMT)
         trajectory->SetDrawTrajectory(true);
   }
